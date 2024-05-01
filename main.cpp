@@ -6,6 +6,7 @@
 #include <iostream>
 #include "utils/myDate.h"
 #include "trie/trie.h"
+#include "trie/file.h"
 
 using namespace words_memorization;
 
@@ -15,7 +16,7 @@ int main() {
     utils::myDate myDate;
     std::cout << sizeof(time_t) << std::endl;
 
-    auto * myTrie = trie::trie::New();
+    auto * myTrie = trie::Trie::New();
     myTrie->insert("test1", nullptr);
     myTrie->insert("test2", nullptr);
     myTrie->insert("test1", nullptr);
@@ -30,9 +31,30 @@ int main() {
     std::cout << a->String() << std::endl;
 
 //    std::cout << myTrie->remove("te") << std::endl;
-    std::cout << myTrie->remove("text") << std::endl;
+//    std::cout << myTrie->remove("text") << std::endl;
 
     myTrie->showAllWords();
+
+
+
+    auto * _word = words::Word::getWordWithWordJson("{apple,Ãû´Ê,}");
+    std::cout << _word->String() << std::endl;
+    myTrie->insert(_word->getWord(), _word);
+
+    std::string ans = myTrie->getTrieFileJson();
+    std::cout << ans << std::endl;
+
+    trie::file::getInstance()->storeTrieToFile(myTrie);
+
+    trie::Trie *newTrie = nullptr;
+    trie::file::getInstance()->getTrieFromFile(newTrie);
+
+    if (newTrie) {
+        std::cout << "53: " << std::endl;
+        newTrie->showAllWords();
+    }
+
+
 
     return 0;
 }
