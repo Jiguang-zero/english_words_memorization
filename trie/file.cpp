@@ -10,6 +10,9 @@ namespace words_memorization::trie {
     // 初始化单例
     file *file::instance = new file();
 
+    const char* file::DICTIONARY_ALL_TREE = "resource/dictionary_all.dic.tree";
+    const char* file::DICTIONARY_PATH = "resource";
+
     file *file::getInstance() {
         return instance;
     }
@@ -23,14 +26,14 @@ namespace words_memorization::trie {
         auto trieFileFileJson = trie->getTrieFileJson();
 
         // 资源文件夹 resource
-        std::filesystem::path folderPath = "resource";
+        std::filesystem::path folderPath = DICTIONARY_PATH;
         if (!std::filesystem::exists(folderPath)) {
             if (!std::filesystem::create_directories(folderPath)) {
                 //TODO: 创建文件夹错误
             }
         }
 
-        outFile.open("resource/dictionary_all.dic.tree");
+        outFile.open(DICTIONARY_ALL_TREE);
         outFile << trieFileFileJson;
 
         // 关闭文件
@@ -40,7 +43,7 @@ namespace words_memorization::trie {
     void file::getTrieFromFile(Trie *&trie) {
         std::string fileJson;
 
-        inFile.open("resource/dictionary_all.dic.tree");
+        inFile.open(DICTIONARY_ALL_TREE);
         if (!inFile.is_open()) {
             //TODO:: 报错处理
             return;
@@ -52,10 +55,8 @@ namespace words_memorization::trie {
             return;
         }
 
-        std::cout << "55: " << fileJson << std::endl;
-        Trie::setTrieFromFileJson(fileJson, trie);
-
         // 重构 trie
+        Trie::setTrieFromFileJson(fileJson, trie);
     }
 
 

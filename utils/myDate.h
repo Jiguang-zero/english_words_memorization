@@ -2,8 +2,8 @@
 // Created by 86158 on 2024/4/28.
 //
 
-#ifndef WORDS_MYDATE_H
-#define WORDS_MYDATE_H
+#ifndef WORDS_MY_DATE_H
+#define WORDS_MY_DATE_H
 
 #include <ctime>
 #include <string>
@@ -30,9 +30,15 @@ namespace words_memorization::utils {
          * @return YYYY-MM-DD
          */
         [[nodiscard]] std::string String() const;
+
+        /**
+         * 获取完整的时间 yyyy-mm-dd hh:mm:ss 用于日志系统使用
+         * @return std::string 时间字符串 e.g. 2024.1.5 32:23:43
+         */
+        static std::string getFullTimeForLog();
     };
 
 } // words_memorization
 // utils
 
-#endif //WORDS_MYDATE_H
+#endif //WORDS_MY_DATE_H

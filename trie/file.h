@@ -32,6 +32,12 @@ namespace words_memorization::trie {
         std::ofstream outFile;
         std::ifstream inFile;
 
+        // 字典树存储的文件 all_tree 路径
+        static const char* DICTIONARY_ALL_TREE;
+
+        // 资源文件(词典) 的路径: resource
+        static const char* DICTIONARY_PATH;
+
     public:
         /**
          * 获取单例
@@ -50,8 +56,6 @@ namespace words_memorization::trie {
          * @param trie Trie*& 需要对trie进行重新分配空间
          */
         void getTrieFromFile(Trie*& trie);
-
-    private:
 
     };
 

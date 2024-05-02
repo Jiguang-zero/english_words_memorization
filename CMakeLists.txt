@@ -16,4 +16,6 @@ add_executable(englishWordsMemorization main.cpp
         words/word.cpp
         words/Word.h
         trie/file.cpp
-        trie/file.h)
+        trie/file.h
+        utils/Logger.cpp
+        utils/Logger.h)

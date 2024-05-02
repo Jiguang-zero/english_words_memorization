@@ -7,10 +7,13 @@
 #include "utils/myDate.h"
 #include "trie/trie.h"
 #include "trie/file.h"
+#include "utils/Logger.h"
+
 
 using namespace words_memorization;
 
 int main() {
+    /*
     repl::repl::Start();
 
     utils::myDate myDate;
@@ -50,11 +53,20 @@ int main() {
     trie::file::getInstance()->getTrieFromFile(newTrie);
 
     if (newTrie) {
-        std::cout << "53: " << std::endl;
         newTrie->showAllWords();
     }
+*/
 
+    auto log1 = utils::Logger::getInstance();
 
+    log1->info("打开文件失败");
+    log1->info("关闭文件失败");
+
+    LOG << "Test Error";
+
+//    log->stop();
+
+//    std::cout << utils::myDate::getFullTimeForLog() << std::endl;
 
     return 0;
 }

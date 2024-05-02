@@ -135,7 +135,6 @@ namespace words_memorization::trie {
      */
     void Trie::setTrieFromFileJson(const std::string &fileJson, Trie *& trie) {
         trie = new Trie();
-        std::cout << "138: " << trie << std::endl;
         for (int index = 0; index < fileJson.length(); index ++ ) {
             while (index < fileJson.length() && fileJson[index] != '{') {
                 index ++;
