@@ -5,6 +5,8 @@
 #ifndef WORDS_LOGGER_H
 #define WORDS_LOGGER_H
 
+#include "../token/Token.h"
+
 #include <string>
 #include <fstream>
 #include <mutex>

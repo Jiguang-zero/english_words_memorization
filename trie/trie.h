@@ -17,6 +17,7 @@ namespace words_memorization::trie {
             int cnt; // 判断当前节点的单词数量
             std::unordered_map<char, TrieNode*> next;
             words::Word* word;
+
             explicit TrieNode() : word(nullptr), cnt(1) {};
         };
         TrieNode* root;

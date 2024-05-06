@@ -18,4 +18,12 @@ add_executable(englishWordsMemorization main.cpp
         trie/file.cpp
         trie/file.h
         utils/Logger.cpp
-        utils/Logger.h)
+        utils/Logger.h
+        token/Token.cpp
+        token/Token.h
+        lexer/Lexer.cpp
+        lexer/Lexer.h
+        utils/Encoding.cpp
+        utils/Encoding.h
+        command/command.h
+        command/command.cpp)

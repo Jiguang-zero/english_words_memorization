@@ -5,14 +5,25 @@
 #include "repl/repl.h"
 #include <iostream>
 #include "utils/myDate.h"
+#include "utils/Encoding.h"
 #include "trie/trie.h"
 #include "trie/file.h"
+#include "token/Token.h"
 #include "utils/Logger.h"
+#include "lexer/Lexer.h"
 
+#include <cstdlib>
+#include <ctime>
 
 using namespace words_memorization;
 
-int main() {
+void test();
+void test(std::string a);
+
+int main(int argc, char** argv) {
+    if (argc == 2) {
+        test(argv[1]);
+    }
     /*
     repl::repl::Start();
 
@@ -55,7 +66,7 @@ int main() {
     if (newTrie) {
         newTrie->showAllWords();
     }
-*/
+
 
     auto log1 = utils::Logger::getInstance();
 
@@ -63,10 +74,47 @@ int main() {
     log1->info("¹Ø±ÕÎÄ¼þÊ§°Ü");
 
     LOG << "Test Error";
-
+*/
 //    log->stop();
 
+    bool a = utils::myDate::isDate("2024-24-23");
+    bool b = utils::myDate::isDate("2024-10-3");
+
+    std::cout << utils::myDate::dow(2024, 6, 8) << std::endl;
+
+
+
+
 //    std::cout << utils::myDate::getFullTimeForLog() << std::endl;
+    test();
+
 
     return 0;
+}
+
+void test() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    auto isLeap = [] (int year) -> bool {
+        return (year / 4 - year / 100 + year / 400) == 1;
+    };
+
+    for (int i = 0; i < 10; i ++ ) {
+        int year = rand() % 1000 + 1500;
+        std::cout << year << ": ";
+        std::cout << (isLeap(year) ? "leap" : "common") << std::endl;
+    }
+}
+
+void test(std::string a) {
+
+    auto * l = lexer::Lexer::New(a);
+
+    auto t = l->NextToken();
+
+    while (t.getType() != token::Token::TOKEN_EOF) {
+        std::cout << t.getLiteral() << ' ' << t.getType() << std::endl;
+        t = l->NextToken();
+    }
+
 }
