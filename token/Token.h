@@ -60,6 +60,7 @@ namespace words_memorization::token {
         const static TokenType DATE; // 日期
         const static TokenType TOKEN_EOF; // 结束
         const static TokenType OPTION; // option, the option of the command
+        const static TokenType STRING; // 字符串 用""包括在其中
 
         // 关键字
         const static TokenType INSERT_COMMAND; // "insert" 命令

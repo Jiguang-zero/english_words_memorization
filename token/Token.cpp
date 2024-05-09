@@ -15,6 +15,7 @@ namespace words_memorization::token {
     const TokenType Token::DATE = "date";
     const TokenType Token::TOKEN_EOF = "EOF";
     const TokenType Token::OPTION = "option";
+    const TokenType Token::STRING = "string";
 
     const TokenType Token::INSERT_COMMAND = "insert";
     const TokenType Token::SELECT_COMMAND = "select";

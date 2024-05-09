@@ -26,4 +26,6 @@ add_executable(englishWordsMemorization main.cpp
         utils/Encoding.cpp
         utils/Encoding.h
         command/command.h
-        command/command.cpp)
+        command/command.cpp
+        parser/Parser.cpp
+        parser/Parser.h)

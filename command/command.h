@@ -7,6 +7,7 @@
 
 #include <utility>
 #include <string>
+#include <vector>
 
 #include "../token/Token.h"
 
@@ -15,7 +16,8 @@ namespace words_memorization::command {
     class Command {
     public:
         virtual std::string String() = 0;
-        virtual std::string help() = 0;
+
+        [[maybe_unused]] virtual std::string help() = 0;
     };
 
     /**
@@ -31,11 +33,48 @@ namespace words_memorization::command {
 
     public:
         InsertCommand() = default;
-        InsertCommand(std::string _word, std::string _meaning) : word(std::move(_word)), meaning(std::move(_meaning)) {}
+        explicit InsertCommand(token::Token _token) : token(std::move(_token)) {}
+
+        [[maybe_unused]] InsertCommand(std::string _word, std::string _meaning) : word(std::move(_word)), meaning(std::move(_meaning)) {}
+
+        [[maybe_unused]] void setWord(const std::string& _word);
+
+        [[maybe_unused]] void setMeaning(const std::string& _meaning);
 
         std::string help() override;
         std::string String() override;
     };
+
+    /**
+     * entrance
+     */
+    class Commands : public virtual Command {
+    private:
+        token::Token token; // "/"
+        std::vector<Command*> commands;
+
+    public:
+        Commands() = default;
+        explicit Commands(token::Token _token) : token(std::move(_token)) {}
+
+        /**
+         * set the commands of Commands out of class.
+         * @param _commands std::vector<Command *>
+         */
+        [[maybe_unused]] void setCommands(std::vector<Command *> _commands);
+
+        /**
+         * get the commands of Commands
+         * @return
+         */
+        [[maybe_unused]] [[nodiscard]] std::vector<Command*> getCommands() const;
+
+
+        std::string help() override;
+        std::string String() override;
+    };
+
+
 }
 
 #endif //WORDS_COMMAND_H

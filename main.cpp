@@ -11,6 +11,7 @@
 #include "token/Token.h"
 #include "utils/Logger.h"
 #include "lexer/Lexer.h"
+#include "parser/parser.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -19,6 +20,7 @@ using namespace words_memorization;
 
 void test();
 void test(std::string a);
+void testParser();
 
 int main(int argc, char** argv) {
     if (argc == 2) {
@@ -77,19 +79,23 @@ int main(int argc, char** argv) {
 */
 //    log->stop();
 
-    bool a = utils::myDate::isDate("2024-24-23");
-    bool b = utils::myDate::isDate("2024-10-3");
-
-    std::cout << utils::myDate::dow(2024, 6, 8) << std::endl;
-
-
-
-
-//    std::cout << utils::myDate::getFullTimeForLog() << std::endl;
-    test();
-
+    testParser();
 
     return 0;
+}
+
+void testParser() {
+    std::string input = "/insert | insert apple hello-f | insert apple a ";
+    auto * lexer = lexer::Lexer::New(input);
+    auto * parser = parser::Parser::New(lexer);
+
+    auto * commands = parser->parseCommand();
+    if (commands == nullptr) {
+        std::cout << "getCommands Error" << std::endl;
+    }
+    for (const auto & command : commands->getCommands()) {
+        std::cout << command->String() << std::endl;
+    }
 }
 
 void test() {
